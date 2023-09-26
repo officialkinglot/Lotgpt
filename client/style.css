@@ -7,22 +7,26 @@
   font-family: "Alegreya Sans", sans-serif;
   font-size: larger;
   font-weight: bold;
+  
+   
+
+
 }
 
 body {
   background: #000000;
-  color: #0113d8;
 }
 
 #app {
   width: 100vw;
   height: 100vh;
-  background: #0113d8;
+  background: #343541;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  background-color: #000000;
+  background: url(./assets/5.jpg);
   background-size: 100% 100%;
 }
 
@@ -32,11 +36,14 @@ body {
   height: 100%;
   overflow-y: scroll;
   scroll-behavior: auto;
+
   display: flex;
   flex-direction: column;
   gap: 10px;
+
   -ms-overflow-style: none;
   scrollbar-width:auto;
+
   padding-bottom: 20px;
   scroll-behavior: smooth;
 }
@@ -52,33 +59,34 @@ body {
 }
 
 .ai {
-  background: #120a1b;
-  text-decoration-color: #5436DA;
+  background: #1f2025;
 }
 
 .chat {
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
+
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   gap: 10px;
-  color: #5436DA;
 }
 
 .profile {
   width: 36px;
   height: 36px;
   border-radius: 5px;
+
   background: #5436DA;
+
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .ai .profile {
-  background: #5dc100;
+  background: #10a37f;
 }
 
 .profile img {
@@ -89,12 +97,17 @@ body {
 
 .message {
   flex: 1;
+
   color: #93e90ae7;
   font-size: 30px;
   font-weight: bold;
+
   max-width: 100%;
   overflow-x: scroll;
+
+ 
   white-space: pre-wrap; 
+
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
@@ -110,21 +123,21 @@ form {
   margin: 0 auto;
   padding: 10px;
   background: #0b0b0b;
+
   display: flex;
   flex-direction: row;
   gap: 10px;
   scroll-behavior: auto;
-  
 }
 
 textarea {
   width: 100%;
   scroll-behavior: auto;
-  color: #52d40dd5;
-  font-size: 30px;
+  color: #ffffff;
+  font-size:30px;
   padding: 10px;
   background: transparent;
-  border-radius: 5px;
+  border-radius:5px;
   border: none;
   outline: none;
 }

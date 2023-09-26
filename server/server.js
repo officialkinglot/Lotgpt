@@ -36,13 +36,15 @@ app.post('/', async (req, res) => {
         frequency_penalty:0.5,
         presence_penalty:0, 
       });  
-   res.status(200).send({
-    bot:response.data.choices[0].text
-    })
-  }catch (error) {
-      console.log(error);
-      res.status(500).send({error}) 
-  }
-})
-
-app.listen(5000,()=>console.log('server is running on port http://localhost:5000',));
+ 
+      res.status(200).send({
+        bot: response.data.choices[0].text
+      });
+  
+    } catch (error) {
+      console.error(error)
+      res.status(500).send(error || 'Something went wrong');
+    }
+  })
+  
+  app.listen(5000, () => console.log('server listening http://localhost:5000'));
