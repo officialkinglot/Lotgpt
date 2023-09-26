@@ -7,10 +7,6 @@
   font-family: "Alegreya Sans", sans-serif;
   font-size: larger;
   font-weight: bold;
-  
-   
-
-
 }
 
 body {
@@ -21,7 +17,6 @@ body {
   width: 100vw;
   height: 100vh;
   background: #343541;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,14 +31,11 @@ body {
   height: 100%;
   overflow-y: scroll;
   scroll-behavior: auto;
-
   display: flex;
   flex-direction: column;
-  gap: 10px;
-
+  gap:10px;
   -ms-overflow-style: none;
   scrollbar-width:auto;
-
   padding-bottom: 20px;
   scroll-behavior: smooth;
 }
@@ -59,55 +51,47 @@ body {
 }
 
 .ai {
-  background: #1f2025;
+  background: #1a1a1a;
 }
 
 .chat {
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  gap: 10px;
+  gap:10px;
 }
 
 .profile {
   width: 36px;
   height: 36px;
   border-radius: 5px;
-
   background: #5436DA;
-
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .ai .profile {
-  background: #10a37f;
+  background: #131514;
 }
 
 .profile img {
-  width: 60%;
-  height: 60%;
-  object-fit: contain;
+  width:60%;
+  height:60%;
+  object-fit:contain;
 }
 
-.message {
+.message{
   flex: 1;
-
   color: #93e90ae7;
-  font-size: 30px;
+  font-size: 28px;
   font-weight: bold;
-
-  max-width: 100%;
+  max-width:100%;
   overflow-x: scroll;
-
- 
   white-space: pre-wrap; 
-
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
@@ -123,15 +107,15 @@ form {
   margin: 0 auto;
   padding: 10px;
   background: #0b0b0b;
-
   display: flex;
   flex-direction: row;
-  gap: 10px;
-  scroll-behavior: auto;
+  gap:10px;
+  scroll-behavior:auto;
+  cursor: pointer;
 }
 
 textarea {
-  width: 100%;
+  width:100%;
   scroll-behavior: auto;
   color: #ffffff;
   font-size:30px;
@@ -146,7 +130,8 @@ button {
   outline: 0;
   border: 0;
   cursor: pointer;
-  background: transparent;
+  background:transparent;
+  cursor:pointer;
 }
 
 form img {
