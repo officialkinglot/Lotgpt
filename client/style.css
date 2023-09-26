@@ -124,12 +124,13 @@ textarea {
   width:100%;
   scroll-behavior: auto;
   color: #ffffffde;
-  font-size:23px;
+  font-size:19px;
   padding: 4%;
   background:rgb(12, 10, 10);
   border-radius:50px;
   border: none;
   outline: none;
+  cursor: pointer;
 }
 
 button {
