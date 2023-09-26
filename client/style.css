@@ -87,7 +87,7 @@ body {
 .message{
   flex: 1;
   color: #93e90ae7;
-  font-size: 25px;
+  font-size: 23px;
   font-weight: bold;
   max-width:100%;
   overflow-x: scroll;
@@ -96,6 +96,7 @@ body {
   scrollbar-width: none;
   cursor: pointer;
   scroll-behavior: auto;
+  filter: brightness(170%);
 }
 
 /* hides scrollbar */
@@ -114,6 +115,8 @@ form {
   gap:10px;
   scroll-behavior:auto;
   cursor: pointer;
+  border-radius: 50px;
+  filter: brightness(170%);
 }
 
 textarea {
@@ -121,9 +124,9 @@ textarea {
   scroll-behavior: auto;
   color: #ffffff;
   font-size:24px;
-  padding: 1;
+  padding: 3%;
   background:rgb(0, 0, 0);
-  border-radius:5px;
+  border-radius:50px;
   border: none;
   outline: none;
 }
@@ -139,7 +142,7 @@ button {
 
 form img {
   width: 30px;
-  height: 40px;
+  height: 50px;
   margin: 1%;
   margin-right:6px;
 }
