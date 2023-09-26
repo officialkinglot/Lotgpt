@@ -1,12 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@100;300;400;500;700;800;900&display=swap");
 
 *{
-  margin: 0;
+  margin:0;
   padding:0;
   box-sizing: border-box;
   font-family: "Alegreya Sans", sans-serif;
   font-size: larger;
   font-weight: bold;
+ 
 }
 
 body {
@@ -73,7 +74,7 @@ body {
   justify-content: center;
   align-items: center;
 }
-
+ 
 .ai .profile {
   background: #04532b;
 }
@@ -116,16 +117,16 @@ form {
   scroll-behavior:auto;
   cursor: pointer;
   border-radius: 50px;
-  filter: brightness(170%);
+  filter: brightness(220%);
 }
 
 textarea {
   width:100%;
   scroll-behavior: auto;
-  color: #ffffffc9;
-  font-size:22px;
+  color: #ffffffde;
+  font-size:23px;
   padding: 4%;
-  background:rgb(0, 0, 0);
+  background:rgb(12, 10, 10);
   border-radius:50px;
   border: none;
   outline: none;
@@ -137,13 +138,13 @@ button {
   cursor: pointer;
   background:transparent;
   cursor:pointer;
-  padding: 1%;
+  padding: 0%;
 }
 
 form img {
   width: 39px;
   height: 50px;
-  margin: 1%;
+  margin:-8%;
   margin-right:20px;
-  margin-bottom:3px;
+  /* margin-bottom:3px; */
 }
