@@ -51,7 +51,7 @@ body {
 }
 
 .ai {
-  background: #1a1a1a;
+  background: #0f0f0f;
 }
 
 .chat {
@@ -75,7 +75,7 @@ body {
 }
 
 .ai .profile {
-  background: #131514;
+  background: #04532b;
 }
 
 .profile img {
@@ -87,13 +87,15 @@ body {
 .message{
   flex: 1;
   color: #93e90ae7;
-  font-size: 28px;
+  font-size: 25px;
   font-weight: bold;
   max-width:100%;
   overflow-x: scroll;
   white-space: pre-wrap; 
   -ms-overflow-style: none;
   scrollbar-width: none;
+  cursor: pointer;
+  scroll-behavior: auto;
 }
 
 /* hides scrollbar */
@@ -105,8 +107,8 @@ form {
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 10px;
-  background: #0b0b0b;
+  padding: 1px;
+  background: #ffffff;
   display: flex;
   flex-direction: row;
   gap:10px;
@@ -118,9 +120,9 @@ textarea {
   width:100%;
   scroll-behavior: auto;
   color: #ffffff;
-  font-size:30px;
-  padding: 10px;
-  background: transparent;
+  font-size:24px;
+  padding: 1;
+  background:rgb(0, 0, 0);
   border-radius:5px;
   border: none;
   outline: none;
@@ -132,9 +134,12 @@ button {
   cursor: pointer;
   background:transparent;
   cursor:pointer;
+  padding: 1%;
 }
 
 form img {
   width: 30px;
-  height: 30px;
+  height: 40px;
+  margin: 1%;
+  margin-right:6px;
 }
