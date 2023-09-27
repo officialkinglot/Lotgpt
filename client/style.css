@@ -125,15 +125,18 @@ form {
 textarea {
   width:100%;
   scroll-behavior: auto;
-  color: #ffffff;
-  font-size:18px;
+  color: #b4bbbc;
+  font-size:20px;
   padding: 3%;
-  background:rgb(12, 10, 10);
+  background:rgb(9, 9, 9);
   border-radius:50px;
   border: none;
   outline: none;
   cursor: pointer;
   overflow:auto;
+  filter: brightness(100%);
+  font-family: Verdana, sans-serif;
+  font-style: italic;
 }
 
 button {
