@@ -7,7 +7,7 @@
   font-family: "Alegreya Sans", sans-serif;
   font-size: larger;
   font-weight: bold;
- 
+  
 }
 
 body {
@@ -38,11 +38,11 @@ body {
   -ms-overflow-style: none;
   scrollbar-width:auto;
   padding-bottom: 20px;
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth; */
 }
 
 /* hides scrollbar */
-#chat_container::-webkit-scrollbar {
+#chat_container::-webkit-scrollbar{
   display: none;
 }
 
@@ -98,6 +98,7 @@ body {
   cursor: pointer;
   scroll-behavior: auto;
   filter: brightness(170%);
+  
 }
 
 /* hides scrollbar */
@@ -110,28 +111,29 @@ form {
   max-width: 1260px;
   margin: 0 auto;
   padding: 5px;
-  background: #382a2a;
+  background: #252428;
   display: flex;
-  flex-direction: row;
+  flex-direction:row;
   gap:10px;
   scroll-behavior:auto;
   cursor: pointer;
   border-radius: 50px;
   filter: brightness(220%);
-  transform: translateY(-20px);
+  transform: translateY(-35px);
 }
 
 textarea {
   width:100%;
   scroll-behavior: auto;
-  color: #ffffffde;
-  font-size:19px;
-  padding: 4%;
+  color: #ffffff;
+  font-size:18px;
+  padding: 3%;
   background:rgb(12, 10, 10);
   border-radius:50px;
   border: none;
   outline: none;
   cursor: pointer;
+  overflow:auto;
 }
 
 button {
@@ -148,5 +150,4 @@ form img {
   height: 50px;
   margin:-8%;
   margin-right:20px;
-  /* margin-bottom:3px; */
 }
