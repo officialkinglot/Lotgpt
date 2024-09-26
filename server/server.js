@@ -1,17 +1,8 @@
-import express from 'express';
-import * as dotenv from 'dotenv';
+ import express from 'express';
 import cors from 'cors';
-import {Configuration, OpenAIApi} from 'openai';
+import axios from 'axios'; // Use axios to make HTTP requests
 
-dotenv.config();
-
-console.log(process.env.OPENAI_API_KEY)
-
-const configuration = new Configuration({
-  apiKey: process.env.rapidapi.com,
-});
-
-const openai = new OpenAIApi(configuration);
+const RAPIDAPI_KEY = 'e54a1fb94fmshb4d147683caa9bep16ef30jsn8a41fea8c0ff'; // Replace this with your RapidAPI key
 
 const app = express();
 app.use(cors());
@@ -19,32 +10,38 @@ app.use(express.json());
 
 app.get('/', async (req, res) => {
     res.status(200).send({
-     message: 'Hello from Kinglot',   
-  })
+        message: 'Hello from Kinglot',   
+    });
 });
 
 app.post('/', async (req, res) => {
-  try {
-     const prompt = req.body.prompt;
+    try {
+        const prompt = req.body.prompt;
 
-     const response = await openai.createCompletion({
-        model: "text-davinci-003", 
-        prompt:`${prompt}`,
-        temperature:0,
-        max_tokens:3000,
-        top_p:1,
-        frequency_penalty:0.5,
-        presence_penalty:0, 
-      });  
- 
-      res.status(200).send({
-        bot: response.data.choices[0].text
-      });
-  
+        // Make a POST request to OpenAI via RapidAPI
+        const response = await axios.post('https://openai80.p.rapidapi.com/completions', {
+            model: "text-davinci-003", 
+            prompt: prompt,
+            temperature: 0,
+            max_tokens: 3000,
+            top_p: 1,
+            frequency_penalty: 0.5,
+            presence_penalty: 0,
+        }, {
+            headers: {
+                'Content-Type': 'application/json',
+                'X-RapidAPI-Key': RAPIDAPI_KEY, // RapidAPI Key
+                'X-RapidAPI-Host': 'openai80.p.rapidapi.com' // The correct RapidAPI host
+            }
+        });
+
+        res.status(200).send({
+            bot: response.data.choices[0].text
+        });
     } catch (error) {
-      console.error(error)
-      res.status(500).send(error || 'Something went wrong');
+        console.error(error);
+        res.status(500).send(error.message || 'Something went wrong');
     }
-  })
-  
-  app.listen(5000, () => console.log('server listening http://localhost:5000'));
+});
+
+app.listen(5000, () => console.log('Server is listening on http://localhost:5000'));
