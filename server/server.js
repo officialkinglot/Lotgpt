@@ -1,35 +1,50 @@
- const url = 'https://chat-gpt-3-5-turbo2.p.rapidapi.com/problem.json?question=hello';
-const options = {
-	method: 'GET',
-	headers: {
-		'x-rapidapi-key': 'e54a1fb94fmshb4d147683caa9bep16ef30jsn8a41fea8c0ff', // Replace with your actual key
-		'x-rapidapi-host': 'chat-gpt-3-5-turbo2.p.rapidapi.com'
-	}
-};
+import express from 'express';
+import * as dotenv from 'dotenv';
+import cors from 'cors';
+import {Configuration, OpenAIApi} from 'openai';
 
-const fetchData = async () => {
-    try {
-        const response = await fetch(url, options);
+dotenv.config();
 
-        // Check if the response status is OK
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
+console.log(process.env.OPENAI_API_KEY)
 
-        // Parse response as JSON
-        const result = await response.json();  // Change to json() to handle JSON response
-        console.log(result);
-        
-        // Access specific fields in the response if necessary
-        if (result.answer) {
-            console.log('Answer:', result.answer);
-        } else {
-            console.log('Unexpected response structure:', result);
-        }
+const configuration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
+const openai = new OpenAIApi(configuration);
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+app.get('/', async (req, res) => {
+    res.status(200).send({
+     message: 'Hello from Kinglot',   
+  })
+});
+
+app.post('/', async (req, res) => {
+  try {
+     const prompt = req.body.prompt;
+
+     const response = await openai.createCompletion({
+        model: "text-davinci-003", 
+        prompt:${prompt},
+        temperature:0,
+        max_tokens:3000,
+        top_p:1,
+        frequency_penalty:0.5,
+        presence_penalty:0, 
+      });  
+ 
+      res.status(200).send({
+        bot: response.data.choices[0].text
+      });
+  
     } catch (error) {
-        console.error('Error occurred:', error);
+      console.error(error)
+      res.status(500).send(error || 'Something went wrong');
     }
-};
-
-// Call the function to execute the request
-fetchData();
+  })
+  
+  app.listen(5000, () => console.log('server listening http://localhost:5000'));
