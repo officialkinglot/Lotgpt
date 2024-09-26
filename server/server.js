@@ -19,7 +19,7 @@ app.post('/', async (req, res) => {
         const prompt = req.body.prompt;
 
         // Make a POST request to OpenAI via RapidAPI
-        const response = await axios.post('https://openai80.p.rapidapi.com/completions', {
+        const response = await axios.post('https://rapidapi.com/completions', {
             model: "text-davinci-003", 
             prompt: prompt,
             temperature: 0,
@@ -31,7 +31,7 @@ app.post('/', async (req, res) => {
             headers: {
                 'Content-Type': 'application/json',
                 'X-RapidAPI-Key': RAPIDAPI_KEY, // RapidAPI Key
-                'X-RapidAPI-Host': 'openai80.p.rapidapi.com' // The correct RapidAPI host
+                'X-RapidAPI-Host': 'rapidapi.com' // The correct RapidAPI host
             }
         });
 
