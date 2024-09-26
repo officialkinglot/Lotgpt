@@ -1,28 +1,35 @@
- app.post('/', async (req, res) => {
+ const url = 'https://chat-gpt-3-5-turbo2.p.rapidapi.com/problem.json?question=hello';
+const options = {
+	method: 'GET',
+	headers: {
+		'x-rapidapi-key': 'e54a1fb94fmshb4d147683caa9bep16ef30jsn8a41fea8c0ff', // Replace with your actual key
+		'x-rapidapi-host': 'chat-gpt-3-5-turbo2.p.rapidapi.com'
+	}
+};
+
+const fetchData = async () => {
     try {
-        const prompt = req.body.prompt;
+        const response = await fetch(url, options);
 
-        const options = {
-            method: 'GET',
-            url: 'https://chat-gpt-3-5-turbo2.p.rapidapi.com/problem.json',
-            params: { question: prompt },
-            headers: {
-                'x-rapidapi-key': "e54a1fb94fmshb4d147683caa9bep16ef30jsn8a41fea8c0ff",
-                'x-rapidapi-host': 'chat-gpt-3-5-turbo2.p.rapidapi.com'
-            }
-        };
+        // Check if the response status is OK
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
 
-        const response = await axios.request(options);
-
-        // Log the full response to see what is returned
-        console.log('API response:', response.data);
-
-        // Return the response to the frontend, adjust if needed
-        res.status(200).send({
-            bot: response.data.answer || "No answer found"  // Ensure you are sending the correct field
-        });
+        // Parse response as JSON
+        const result = await response.json();  // Change to json() to handle JSON response
+        console.log(result);
+        
+        // Access specific fields in the response if necessary
+        if (result.answer) {
+            console.log('Answer:', result.answer);
+        } else {
+            console.log('Unexpected response structure:', result);
+        }
     } catch (error) {
-        console.error(error);
-        res.status(500).send(error.message || 'Something went wrong');
+        console.error('Error occurred:', error);
     }
-});
+};
+
+// Call the function to execute the request
+fetchData();
