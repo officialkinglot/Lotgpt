@@ -3,6 +3,7 @@ import cors from 'cors';
 import axios from 'axios'; // Use axios to make HTTP requests
 
 const RAPIDAPI_KEY = 'e54a1fb94fmshb4d147683caa9bep16ef30jsn8a41fea8c0ff'; // Replace this with your RapidAPI key
+const RAPIDAPI_HOST = 'chat-gpt-3-5-turbo2.p.rapidapi.com'; // Replace with the correct RapidAPI host
 
 const app = express();
 app.use(cors());
@@ -10,7 +11,7 @@ app.use(express.json());
 
 app.get('/', async (req, res) => {
     res.status(200).send({
-        message: 'Hello from Kinglot',   
+        message: 'Hello from Kinglot',
     });
 });
 
@@ -19,8 +20,8 @@ app.post('/', async (req, res) => {
         const prompt = req.body.prompt;
 
         // Make a POST request to OpenAI via RapidAPI
-        const response = await axios.post('https://rapidapi.com/completions', {
-            model: "text-davinci-003", 
+        const response = await axios.post('https://openai80.p.rapidapi.com/completions', {
+            model: "text-davinci-003",
             prompt: prompt,
             temperature: 0,
             max_tokens: 3000,
@@ -31,7 +32,7 @@ app.post('/', async (req, res) => {
             headers: {
                 'Content-Type': 'application/json',
                 'X-RapidAPI-Key': RAPIDAPI_KEY, // RapidAPI Key
-                'X-RapidAPI-Host': 'rapidapi.com' // The correct RapidAPI host
+                'X-RapidAPI-Host': RAPIDAPI_HOST // The correct RapidAPI host
             }
         });
 
