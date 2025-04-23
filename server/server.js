@@ -1,50 +1,60 @@
 import express from 'express';
 import * as dotenv from 'dotenv';
 import cors from 'cors';
-import {Configuration, OpenAIApi} from 'openai';
+import axios from 'axios';
 
 dotenv.config();
-
-console.log(process.env.OPENAI_API_KEY)
-
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-
-const openai = new OpenAIApi(configuration);
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get('/', async (req, res) => {
-    res.status(200).send({
-     message: 'Hello from Kinglot',   
-  })
+const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
+const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
+
+app.get('/', (req, res) => {
+  res.status(200).send({
+    message: 'Hello from Kinglot (Powered by OpenRouter)',
+  });
 });
 
 app.post('/', async (req, res) => {
   try {
-     const prompt = req.body.prompt;
+    const { prompt } = req.body;
 
-     const response = await openai.createCompletion({
-        model: "text-davinci-003", 
-        prompt:`${prompt}`,
-        temperature:0,
-        max_tokens:3000,
-        top_p:1,
-        frequency_penalty:0.5,
-        presence_penalty:0, 
-      });  
- 
-      res.status(200).send({
-        bot: response.data.choices[0].text
-      });
-  
-    } catch (error) {
-      console.error(error)
-      res.status(500).send(error || 'Something went wrong');
-    }
-  })
-  
-  app.listen(5000, () => console.log('server listening http://localhost:5000'));
+    const response = await axios.post(
+      OPENROUTER_API_URL,
+      {
+        model: "openai/gpt-3.5-turbo", // You can change this to any model on OpenRouter
+        messages: [
+          {
+            role: "user",
+            content: prompt
+          }
+        ],
+        temperature: 0.7,
+        max_tokens: 1000,
+      },
+      {
+        headers: {
+          'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
+          'Content-Type': 'application/json',
+          'HTTP-Referer': 'http://localhost:5000', // Required by OpenRouter
+          'X-Title': 'Kinglot AI' // Your app name
+        }
+      }
+    );
+
+    res.status(200).send({
+      bot: response.data.choices[0].message.content
+    });
+
+  } catch (error) {
+    console.error('OpenRouter Error:', error.response?.data || error.message);
+    res.status(500).send({
+      error: error.response?.data?.error?.message || 'Something went wrong'
+    });
+  }
+});
+
+app.listen(5000, () => console.log('Server running on http://localhost:5000'));
