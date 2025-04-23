@@ -1,54 +1,50 @@
 import express from 'express';
 import * as dotenv from 'dotenv';
 import cors from 'cors';
-import axios from 'axios'; // Using axios instead of OpenAI package
+import {Configuration, OpenAIApi} from 'openai';
 
 dotenv.config();
+
+console.log(process.env.OPENAI_API_KEY)
+
+const configuration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
+const openai = new OpenAIApi(configuration);
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-// DeepSeek API configuration
-const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY;
-const DEEPSEEK_API_URL = 'https://api.deepseek.com/v1/chat/completions'; // Verify the correct endpoint
-
 app.get('/', async (req, res) => {
-  res.status(200).send({
-    message: 'Hello from Kinglot (Powered by DeepSeek)',   
-  });
+    res.status(200).send({
+     message: 'Hello from Kinglot',   
+  })
 });
 
 app.post('/', async (req, res) => {
   try {
-    const prompt = req.body.prompt;
+     const prompt = req.body.prompt;
 
-    // DeepSeek API request
-    const response = await axios.post(DEEPSEEK_API_URL, {
-      model: "deepseek-chat", // Verify the correct model name
-      messages: [
-        {
-          role: "user",
-          content: prompt
-        }
-      ],
-      temperature: 0.7,
-      max_tokens: 3000,
-    }, {
-      headers: {
-        'Authorization': `Bearer ${DEEPSEEK_API_KEY}`,
-        'Content-Type': 'application/json'
-      }
-    });
-
-    res.status(200).send({
-      bot: response.data.choices[0].message.content
-    });
-
-  } catch (error) {
-    console.error('DeepSeek API Error:', error.response?.data || error.message);
-    res.status(500).send(error.response?.data || 'Something went wrong');
-  }
-});
-
-app.listen(5000, () => console.log('Server listening on http://localhost:5000'));
+     const response = await openai.createCompletion({
+        model: "text-davinci-003", 
+        prompt:`${prompt}`,
+        temperature:0,
+        max_tokens:3000,
+        top_p:1,
+        frequency_penalty:0.5,
+        presence_penalty:0, 
+      });  
+ 
+      res.status(200).send({
+        bot: response.data.choices[0].text
+      });
+  
+    } catch (error) {
+      console.error(error)
+      res.status(500).send(error || 'Something went wrong');
+    }
+  })
+  
+  app.listen(5000, () => console.log('server listening http://localhost:5000'));
