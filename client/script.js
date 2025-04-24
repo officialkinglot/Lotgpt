@@ -115,4 +115,17 @@ form.addEventListener('keyup', (e) => {
     if (e.keyCode === 13) {
         handleSubmit(e);
     }
+
+    // Detect mobile keyboard appearance
+if ('visualViewport' in window) {
+  const visualViewport = window.visualViewport;
+  
+  visualViewport.addEventListener('resize', function() {
+    if (visualViewport.height < window.innerHeight) {
+      document.body.classList.add('keyboard-visible');
+    } else {
+      document.body.classList.remove('keyboard-visible');
+    }
+  });
+}
 })
