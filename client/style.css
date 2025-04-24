@@ -183,3 +183,118 @@ button svg {
     height: 45px;
   }
 }
+
+/* Add these to your existing style.css */
+
+/* Base Responsive Settings */
+@media screen and (max-width: 768px) {
+  #app {
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+
+  #chat_container {
+    padding-bottom: 80px; /* More space for input on mobile */
+    gap: 8px;
+  }
+
+  .wrapper {
+    padding: 10px 12px;
+  }
+
+  .chat {
+    gap: 8px;
+    max-width: 100%;
+  }
+
+  .profile {
+    width: 30px;
+    height: 30px;
+    min-width: 30px; /* Prevent shrinking */
+  }
+
+  .message {
+    font-size: 18px !important; /* Slightly smaller text */
+    padding: 10px 12px !important;
+    filter: brightness(150%) !important;
+    max-width: 85% !important;
+  }
+
+  form {
+    max-width: 95%;
+    padding: 10px;
+    border-radius: 25px;
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%) translateY(0);
+    width: calc(100% - 20px);
+    margin: 0;
+  }
+
+  textarea {
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 25px;
+  }
+
+  button {
+    width: 42px;
+    height: 42px;
+    min-width: 42px; /* Prevent shrinking */
+  }
+
+  button svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Extra Small Devices (e.g., iPhone 5/SE) */
+@media screen and (max-width: 320px) {
+  .message {
+    font-size: 16px !important;
+    padding: 8px 10px !important;
+  }
+
+  textarea {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  textarea::placeholder {
+    font-size: 14px;
+  }
+}
+
+/* Landscape Mode Adjustments */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  #chat_container {
+    padding-bottom: 70px;
+  }
+
+  form {
+    bottom: 5px;
+  }
+}
+
+/* Prevent zoom on input focus for mobile */
+@media screen and (max-width: 768px) {
+  textarea {
+    font-size: 16px !important;
+    transform: scale(1);
+  }
+}
+
+/* Keyboard appears adjustments */
+@media screen and (max-width: 768px) {
+  body.keyboard-visible #chat_container {
+    padding-bottom: 200px;
+  }
+
+  body.keyboard-visible form {
+    position: absolute;
+    bottom: env(keyboard-inset-height, 200px);
+  }
+}
